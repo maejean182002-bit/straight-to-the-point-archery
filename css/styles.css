@@ -1,0 +1,300 @@
+/* =========================================
+   1. GLOBAL RESET & VARIABLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --forest-green: #228B22;
+    --deep-brown: #5C4033;
+    --gold-accent: #DAA520;
+    --cream-white: #F5F5DC;
+    --white: #FFFFFF;
+    --text-dark: #333333;
+}
+
+/* =========================================
+   2. BASE STYLES & TYPOGRAPHY
+   ========================================= */
+body {
+    background-color: var(--cream-white);
+    background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+    color: var(--text-dark);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; text-align: center; }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   3. ACCESSIBILITY: SKIP LINK & FOCUS
+   ========================================= */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--gold-accent);
+    color: var(--white);
+    padding: 10px 20px;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0 0 5px 5px;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--forest-green);
+}
+
+a:focus, 
+button:focus, 
+.cta-button:focus,
+.card:focus {
+    outline: 3px solid var(--gold-accent);
+    outline-offset: 4px;
+}
+
+/* =========================================
+   4. HEADER & NAVIGATION
+   ========================================= */
+header {
+    background-color: var(--deep-brown);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--cream-white);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--gold-accent);
+    outline: none;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--gold-accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after, nav a:focus::after {
+    width: 100%;
+}
+
+/* =========================================
+   5. HERO SECTION
+   ========================================= */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                      url('https://images.unsplash.com/photo-1511033034011-008035f29910?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 65vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero p {
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+.hero .cta-button {
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+/* =========================================
+   6. CARDS & GRID LAYOUT
+   ========================================= */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.instructor-grid, .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #fdfdf5;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--forest-green);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
+}
+
+.card:hover, .card:focus-within {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    border-top-color: var(--gold-accent);
+}
+
+/* Merged Circle Image Logic for Instructors */
+.instructor-grid img, .circle-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--gold-accent);
+    margin: 0 auto 15px;
+    transition: transform 0.5s ease;
+}
+
+.instructor-grid img:hover, .circle-img:hover {
+    transform: scale(1.1);
+}
+
+.icon-style {
+    color: var(--forest-green);
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card:hover .icon-style, .card:focus-within .icon-style {
+    color: var(--gold-accent);
+    transform: rotate(10deg) scale(1.2);
+}
+
+/* =========================================
+   7. BUTTONS & CTA
+   ========================================= */
+.cta-button, button {
+    background-color: var(--gold-accent);
+    color: var(--white);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease; 
+    cursor: pointer;
+    text-align: center;
+}
+
+.cta-button:hover, button:hover {
+    background-color: #B8860B;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   8. ANIMATIONS & MEDIA QUERIES
+   ========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .instructor-grid, .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .instructor-grid, .grid-container {
+        grid-template-columns: 1fr;
+    }
+    .hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                          url('https://images.unsplash.com/photo-1511033034011-008035f29910?auto=format&fit=crop&w=800&q=60');
+        height: 50vh;
+        background-attachment: scroll;
+    }
+    .hero h1 {
+        font-size: 2.2em;
+    }
+}
